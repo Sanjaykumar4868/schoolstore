@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+<div class="container  fromss">
+
+<div class="form-control p-5">
+  <h2 class="text-center pb-3">Please Fill Form</h2>
+<form method="post" id="personForm" data-cities-url="{% url 'ajax_load_cities' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit"  class="btn btn-success">Submit</button>
+    <a href="{% url 'Logout_view' %}"><button type="submit" class="btn btn-primary">LogOut</button></a>
+</form>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_department").change(function () {
+        const url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
+        const departmentId = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'department_id': departmentId       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+                $("#id_course").html(data);  // replace the contents of the city input with the data that came from the server
+                /*
+
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (city) {
+                    html_data += `<option value="${city.id}">${city.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_city").html(html_data);
+
+                */
+            }
+        });
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<!-- Purpose: <select name="" id="">
+  <option value="">Enquiry</option>
+  <option value="">Place order</option>
+  <option value="">Return</option>
+</select><br><br>
+
+     Mterial provide :-   Pen : <input type="checkbox">
+                  Note Book : <input type="checkbox">
+                  exam papers : <input type="checkbox"><br><br>
+
+      
+      
+<button type="submit" class="btn btn-success" >Submit</button>
+<a href="{% url 'home' %}" type="submit">home</a> -->
+
+<!-- 
+<script>
+var subjectObject = {
+  "Front-end": {
+    "HTML": ["Links", "Images", "Tables", "Lists"],
+    "CSS": ["Borders", "Margins", "Backgrounds", "Float"],
+    "JavaScript": ["Variables", "Operators", "Functions", "Conditions"]    
+  },
+  "Back-end": {
+    "PHP": ["Variables", "Strings", "Arrays"],
+    "SQL": ["SELECT", "UPDATE", "DELETE"]
+  }
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("Department");
+  var topicSel = document.getElementById("Course");
+  var chapterSel = document.getElementById("chapter");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+    chapterSel.length = 1;
+    topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+  topicSel.onchange = function() {
+    //empty Chapters dropdown
+    chapterSel.length = 1;
+    //display correct values
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+      chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+    }
+  }
+}
+</script>
+</head>   
+<body>
+
+<h1>Cascading Dropdown Example</h1>
+
+<form name="form1" id="form1" action="">
+    Name :<input type="text" name="" id="">
+    DOB :<input type="text" name="" id="">
+    AGE :<input type="text" name="" id="">
+    Gender :<input type="text" name="" id="">
+    Phone no :<input type="text" name="" id="">
+    Mail id :<input type="text" name="" id="">
+    Address :<input type="text" name="" id=""><br><br>
+
+
+Department: <select name="subject" id="Department">
+    <option value="" selected="selected">Select Department</option>
+  </select>
+  <br><br>
+Course: <select name="topic" id="Course">
+    <option value="" selected="selected">Please select Department first</option>
+  </select>
+  <br><br>
+Chapters: <select name="chapter" id="chapter">
+    <option value="" selected="selected">Please select Course first</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">  
+
+    <button>Submit</button>
+</form>
+
+ -->
+
+
+{% endblock %}
+
