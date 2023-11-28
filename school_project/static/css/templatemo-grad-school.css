@@ -1616,3 +1616,24 @@ footer p a:hover {
 .fromss{
   padding-top: 150px;
 }
+
+
+
+.category{
+  text-align: justify;
+  border: 1px solid aquamarine;
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: inset 1px 4px 4px aqua;
+}
+
+.category h1{
+  font-size: 70px;
+  padding-bottom: 60px;
+}
+
+.category p{
+  font-size: larger;
+  letter-spacing:1px;
+  line-height: 30px;
+}

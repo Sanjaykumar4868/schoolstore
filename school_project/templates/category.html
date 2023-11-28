@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-<div class="container pt-5">
+<div class="container fromss ">
 {% if category %}
    
-<div>
-    <h1>{{category.name}}</h1>
-    <h2> {{category.description}}</h2>
+<div class="category">
+    <h1 class="text-center">{{category.name}}</h1>
+    <p> {{category.description}}</p>
 </div>
 {% endif %}
 </div>
